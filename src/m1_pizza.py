@@ -569,20 +569,33 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color, th
     #       appropriately.  ASK YOUR INSTRUCTOR FOR AN EXAMPLE.
     ####################################################################
     # ------------------------------------------------------------------
+    # points = generate_points_on_circle(circle, number_of_lines)
+    # circle.attach_to(window)
+    # for k in range(len(points)):
+    #     hopk = k - hops_to_next_point
+    #     start = points[k]
+    #     end = points[hopk]
+    #
+    #     line = rg.Line(start, end)
+    #     line.color = color
+    #     line.arrow = 'first'
+    #     line.thickness = thickness
+    #     line.attach_to(window)
+    # window.render()
+
     points = generate_points_on_circle(circle, number_of_lines)
     circle.attach_to(window)
     for k in range(len(points)):
-        hopk = k - hops_to_next_point
+        hopk = (k + hops_to_next_point) % number_of_lines
         start = points[k]
         end = points[hopk]
+
         line = rg.Line(start, end)
         line.color = color
         line.arrow = 'first'
         line.thickness = thickness
         line.attach_to(window)
     window.render()
-
-
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
